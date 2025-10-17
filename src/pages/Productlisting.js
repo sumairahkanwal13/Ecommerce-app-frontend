@@ -4,8 +4,8 @@ import useFetch from "../useFetch";
 import useWishlist from "../context/WishlistContext";
 
 export default function ProductListing() {
-  const { data: products = [], loading, error } = useFetch("http://localhost:3000/api/products");
-  const { data: categories = [] } = useFetch("http://localhost:3000/api/categories");
+  const { data: products = [], loading, error } = useFetch("https://project-1-five-psi.vercel.app/api/products");
+  const { data: categories = [] } = useFetch("https://project-1-five-psi.vercel.app/api/categories");
 
   const [selectCategories, setSelectCategories] = useState([]);
   const [priceRange, setPriceRange] = useState([15, 150]);

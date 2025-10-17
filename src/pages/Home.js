@@ -3,7 +3,7 @@ import useFetch from "../useFetch";
 
 
 export default function Home(){
-    const { data:categories, loading, error } = useFetch("http://localhost:3000/api/categories")
+    const { data:categories, loading, error } = useFetch("https://project-1-five-psi.vercel.app/api/categories")
     if(loading) return <p>Loading...</p>
     if(error) return <p>Error occurred while fetching the data.</p>
     

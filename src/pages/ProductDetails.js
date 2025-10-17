@@ -8,7 +8,7 @@ export default function ProductDetails(){
     const { addToCart } = useCart();
     const navigate = useNavigate()
 
-    const { data: product, loading, error } = useFetch(`http://localhost:3000/api/products/${id}`);
+    const { data: product, loading, error } = useFetch(`https://project-1-five-psi.vercel.app/api/products/${id}`);
     const [ selectedSize, setSelectedSize ] = useState("");
     const [ message, setMessage ] = useState("");
 

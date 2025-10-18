@@ -1,10 +1,15 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import useAddress from "../context/AddressContext";
+import { toast } from "react-toastify";
 
 const AddressForm = () => {
-  const { addAddress } = useAddress();
+  const {id} = useParams()
+  const { addresses, addAddress, editAddress } = useAddress();
   const navigate = useNavigate();
+
+  const existingAddress = addresses.find((address) => address._id === Number(id));
+
 
   const [formData, setFormData] = useState({
     name: "",
@@ -14,6 +19,12 @@ const AddressForm = () => {
     phone: ""
   });
 
+  useEffect(() =>{
+    if(existingAddress){
+      setFormData(existingAddress)
+    }
+  }, [existingAddress])
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -22,18 +33,20 @@ const AddressForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newAddress = {
-      ...formData,
-      _id: Date.now(),
-    };
-
-    addAddress(newAddress);
+    if(id){
+      editAddress(Number(id), formData)
+      toast.success("Address Updated Successfully!")
+    } else {
+      const newAddress = {...formData, _id: Date.now()}
+      addAddress(newAddress)
+      toast.success("Address Added!")
+    }
     navigate("/address");
   };
 
   return (
     <div className="container my-4">
-      <h2>Add New Address</h2>
+      <h2>{id ? "Edit Address" : "Add New Address"}</h2>
       <form onSubmit={handleSubmit}>
         <label>Name:</label>
         <input
@@ -42,6 +55,7 @@ const AddressForm = () => {
           className="form-control mb-3"
           value={formData.name}
           onChange={handleChange}
+          required
         />
 
         <label>Street:</label>
@@ -51,6 +65,7 @@ const AddressForm = () => {
           className="form-control mb-3"
           value={formData.street}
           onChange={handleChange}
+          required
         />
 
         <label>City:</label>
@@ -60,6 +75,7 @@ const AddressForm = () => {
           className="form-control mb-3"
           value={formData.city}
           onChange={handleChange}
+          required
         />
 
         <label>Country:</label>
@@ -69,6 +85,7 @@ const AddressForm = () => {
           className="form-control mb-3"
           value={formData.country}
           onChange={handleChange}
+          required
         />
 
         <label>Phone Number:</label>
@@ -78,10 +95,11 @@ const AddressForm = () => {
           className="form-control mb-3"
           value={formData.phone}
           onChange={handleChange}
+          required
         />
 
         <button type="submit" className="btn btn-primary mt-3">
-          Save Address
+          {id ? "Update Address" : "Save Address"}
         </button>
       </form>
     </div>

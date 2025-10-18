@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const CartContext = createContext();
@@ -6,7 +6,14 @@ const CartContext = createContext();
 export const useCart = () => useContext(CartContext);
 
 export function CartProvider({ children }) {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(() => {
+    const savedCart = localStorage.getItem("cart")
+    return savedCart ? JSON.parse(savedCart) : []
+  });
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart))
+  }, [cart]);
   
   const addToCart = (product) => {
     setCart((prevCart) => {
@@ -37,6 +44,16 @@ export function CartProvider({ children }) {
     });
   };
 
+  const updateQuantity = (id, newQuantity) => {
+  setCart((prevCart) =>
+    prevCart.map((item) =>
+      item._id === id
+        ? { ...item, quantity: Math.max(newQuantity, 1) }
+        : item
+    )
+  );
+};
+
   
   const clearCart = (showToast = true) => {
     setCart([]);
@@ -46,7 +63,7 @@ export function CartProvider({ children }) {
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, updateQuantity }}>
       {children}
     </CartContext.Provider>
   );

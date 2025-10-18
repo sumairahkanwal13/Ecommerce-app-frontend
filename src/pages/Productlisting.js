@@ -77,14 +77,15 @@ export default function ProductListing() {
     setSortOrder("");
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error occurred while fetching data.</p>;
+  if (loading) return <p className="text-center my5">Loading...</p>;
+  if (error) return <p className="text-center my5" >Error occurred while fetching data.</p>;
 
   return (
     <div className="container my-5">
       <div className="row">
         
         <div className="col-md-3">
+          <div className="d-flex justify-content-between align-items-center mb-3">
           <h4>Filters</h4>
           <button
             onClick={handleClearFilter}
@@ -92,6 +93,7 @@ export default function ProductListing() {
           >
             Clear
           </button>
+          </div>
 
           
           <h5>Price</h5>
@@ -135,7 +137,7 @@ export default function ProductListing() {
           ))}
 
           
-          <h5 className="mt-4">Rating</h5>
+          <h5 className="mt-4 ms-2">Rating</h5>
           {[4, 3, 2, 1].map((rating) => (
             <div key={rating}>
               <input
@@ -150,7 +152,7 @@ export default function ProductListing() {
           ))}
 
           
-          <h5 className="mt-4">Sort by</h5>
+          <h5 className="mt-4 ms-2">Sort by</h5>
           <div>
             <input
               type="radio"

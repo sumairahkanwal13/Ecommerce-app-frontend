@@ -41,6 +41,9 @@ export default function Address(){
                   >
                     Select
                   </button>
+                  <button className="btn btn-outline-secondary btn-sm"
+                  onClick={() =>navigate(`/addressForm/${address._id}`)}
+                   >Edit</button>
                   <button
                     className="btn btn-outline-danger btn-sm"
                     onClick={() => removeAddress(address._id)}

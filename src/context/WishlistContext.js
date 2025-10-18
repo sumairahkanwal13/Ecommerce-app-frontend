@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const WishlistContext = createContext();
@@ -8,7 +8,14 @@ const useWishlist = () => useContext(WishlistContext)
 export default useWishlist;
 
 export function WishlistProvider({children}){
-  const [ wishlist, setWishlist ] = useState([])
+  const [ wishlist, setWishlist ] = useState(() => {
+    const savedWishlist = localStorage.getItem("wishlist")
+    return savedWishlist ? JSON.parse(savedWishlist) : []
+  })
+
+  useEffect(() => {
+    localStorage.setItem("wishlist", JSON.stringify(wishlist))
+  },[ wishlist])
 
   const addToWishlist = (product) => {
    setWishlist((prevList) => [...prevList, product])

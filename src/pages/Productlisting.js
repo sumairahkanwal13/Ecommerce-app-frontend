@@ -34,12 +34,13 @@ export default function ProductListing() {
  
   const filteredProducts = products
     
-    .filter((product) =>
-      searchQuery
-        ? product.name.toLowerCase().includes(searchQuery) ||
-          product.description?.toLowerCase().includes(searchQuery)
-        : true
-    )
+    .filter((product) => {
+      if (!searchQuery) return true;
+      const name = product.name?.toLowerCase() || "";
+      const desc = product.description?.toLowerCase() || "";
+      return name.includes(searchQuery) || desc.includes(searchQuery);
+    })
+
     
     .filter((product) =>
       selectCategories.length > 0
@@ -77,8 +78,8 @@ export default function ProductListing() {
     setSortOrder("");
   };
 
-  if (loading) return <p className="text-center my5">Loading...</p>;
-  if (error) return <p className="text-center my5" >Error occurred while fetching data.</p>;
+  if (loading) return <p className="text-center mt-4">Loading...</p>;
+  if (error) return <p className="text-center mt-4" >Error occurred while fetching data.</p>;
 
   return (
     <div className="container my-5">
@@ -89,7 +90,7 @@ export default function ProductListing() {
           <h4>Filters</h4>
           <button
             onClick={handleClearFilter}
-            className="btn btn-outline-danger btn-sm mb-3"
+            className="btn btn-outline-danger btn-sm"
           >
             Clear
           </button>
@@ -137,9 +138,9 @@ export default function ProductListing() {
           ))}
 
           
-          <h5 className="mt-4 ms-2">Rating</h5>
+          <h5 className="mt-4 ms-3">Rating</h5>
           {[4, 3, 2, 1].map((rating) => (
-            <div key={rating}>
+            <div key={rating} className="ms-3">
               <input
                 type="radio"
                 name="rating"
@@ -152,8 +153,8 @@ export default function ProductListing() {
           ))}
 
           
-          <h5 className="mt-4 ms-2">Sort by</h5>
-          <div>
+          <h5 className="mt-4 ms-3">Sort by</h5>
+          <div className="ms-3">
             <input
               type="radio"
               name="sort"
@@ -163,7 +164,7 @@ export default function ProductListing() {
             />
             <label>Price - Low to High</label>
           </div>
-          <div>
+          <div className="ms-3">
             <input
               type="radio"
               name="sort"

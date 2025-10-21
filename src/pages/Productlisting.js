@@ -199,7 +199,11 @@ export default function ProductListing() {
                       <img
                         src={product.image}
                         alt={product.name}
-                        className="card-img-top"
+                        style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                          }}
                       />
                     </Link>
                     <div className="card-body text-center">

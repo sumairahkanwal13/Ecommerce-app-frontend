@@ -84,99 +84,105 @@ export default function ProductListing() {
   return (
     <div className="container my-5">
       <div className="row">
-        
+
         <div className="col-md-3">
-          <div className="d-flex justify-content-between align-items-center mb-3">
-          <h4>Filters</h4>
-          <button
-            onClick={handleClearFilter}
-            className="btn btn-outline-danger btn-sm"
-          >
-            Clear
-          </button>
-          </div>
+  <div className="d-flex justify-content-between align-items-center mb-3">
+    <h4 className="fw-semibold">Filters</h4>
+    <button
+      onClick={handleClearFilter}
+      className="btn btn-link text-danger p-0"
+      style={{ textDecoration: "none" }}
+    >
+      Clear
+    </button>
+  </div>
 
-          
-          <h5>Price</h5>
-          <p>
-            ${priceRange[0]} - ${priceRange[1]}
-          </p>
-          <input
-            type="range"
-            value={priceRange[0]}
-            min="0"
-            max="200"
-            onChange={(e) =>
-              setPriceRange([Number(e.target.value), priceRange[1]])
-            }
-            className="w-100"
-          />
-          <input
-            type="range"
-            value={priceRange[1]}
-            min="0"
-            max="200"
-            onChange={(e) =>
-              setPriceRange([priceRange[0], Number(e.target.value)])
-            }
-            className="w-100 mb-3"
-          />
+  
+  <div className="mb-4">
+    <h5 className="fw-semibold">Price</h5>
+    <div className="d-flex justify-content-between small text-muted mb-1">
+      <span>{priceRange[0]}</span>
+      <span>{priceRange[1]}</span>
+    </div>
+    <input
+      type="range"
+      className="form-range"
+      min="0"
+      max="200"
+      value={priceRange[1]}
+      onChange={(e) => setPriceRange([priceRange[0], Number(e.target.value)])}
+    />
+  </div>
 
-          
-          <h5 className="mt-4">Categories</h5>
-          {categories.map((category) => (
-            <div key={category._id} className="form-check">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                value={category._id}
-                onChange={handleCategoryChange}
-                checked={selectCategories.includes(category._id)}
-              />
-              <label className="form-check-label">{category.name}</label>
-            </div>
-          ))}
+  
+  <div className="mb-4">
+    <h5 className="fw-semibold">Category</h5>
+    {categories.map((category) => (
+      <div key={category._id} className="form-check ms-1">
+        <input
+          className="form-check-input"
+          type="checkbox"
+          value={category._id}
+          onChange={handleCategoryChange}
+          checked={selectCategories.includes(category._id)}
+        />
+        <label className="form-check-label ms-1">{category.name}</label>
+      </div>
+    ))}
+  </div>
 
-          
-          <h5 className="mt-4 ms-3">Rating</h5>
-          {[4, 3, 2, 1].map((rating) => (
-            <div key={rating} className="ms-3">
-              <input
-                type="radio"
-                name="rating"
-                value={rating}
-                onChange={(e) => setSelectRating(Number(e.target.value))}
-                checked={selectRating === rating}
-              />
-              <label>{rating} stars & above</label>
-            </div>
-          ))}
+  
+  <div className="mb-4">
+    <h5 className="fw-semibold">Rating</h5>
+    {[4, 3, 2, 1].map((rating) => (
+      <div key={rating} className="form-check ms-1">
+        <input
+          className="form-check-input"
+          type="radio"
+          name="rating"
+          value={rating}
+          onChange={(e) => setSelectRating(Number(e.target.value))}
+          checked={selectRating === rating}
+        />
+        <label className="form-check-label ms-1">
+          {rating} stars & above
+        </label>
+      </div>
+    ))}
+  </div>
 
-          
-          <h5 className="mt-4 ms-3">Sort by</h5>
-          <div className="ms-3">
-            <input
-              type="radio"
-              name="sort"
-              value="lowToHigh"
-              onChange={(e) => setSortOrder(e.target.value)}
-              checked={sortOrder === "lowToHigh"}
-            />
-            <label>Price - Low to High</label>
-          </div>
-          <div className="ms-3">
-            <input
-              type="radio"
-              name="sort"
-              value="highToLow"
-              onChange={(e) => setSortOrder(e.target.value)}
-              checked={sortOrder === "highToLow"}
-            />
-            <label>Price - High to Low</label>
-          </div>
-        </div>
+  
+  <div>
+    <h5 className="fw-semibold">Sort by</h5>
+    <div className="form-check ms-1">
+      <input
+        className="form-check-input"
+        type="radio"
+        name="sort"
+        value="lowToHigh"
+        onChange={(e) => setSortOrder(e.target.value)}
+        checked={sortOrder === "lowToHigh"}
+      />
+      <label className="form-check-label ms-1">Price - Low to High</label>
+    </div>
+    <div className="form-check ms-1">
+      <input
+        className="form-check-input"
+        type="radio"
+        name="sort"
+        value="highToLow"
+        onChange={(e) => setSortOrder(e.target.value)}
+        checked={sortOrder === "highToLow"}
+      />
+      <label className="form-check-label ms-1">Price - High to Low</label>
+    </div>
+  </div>
+</div>
 
         
+
+
+
         <div className="col-md-9">
           <h1>
             {searchQuery

@@ -29,9 +29,9 @@ export default function OrderSuccess() {
   }
 
   return (
-    <div className="container text-center my-5">
+    <div className="container my-5">
       <div className="card p-5 shadow-lg">
-        <h3 className="text-success mb-4">Order Placed Successfully!</h3>
+        <h3 className="mb-4">Order Placed Successfully!</h3>
         <p>
           Thank you for shopping with <strong>Fashion 21</strong>.
         </p>

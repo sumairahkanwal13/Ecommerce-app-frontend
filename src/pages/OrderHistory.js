@@ -5,7 +5,7 @@ export default function OrderHistory(){
 
     if(orders.length === 0){
         return (
-            <div className="container text-center my-5">
+            <div className="containertext-center my-5">
                 <h3>No previous orders found.</h3>
                 <p>Start Shopping with <strong>Fashion 21</strong></p>
             </div>

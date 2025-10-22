@@ -11,13 +11,13 @@ export default function Wishlist() {
   const [selectedSize, setSelectedSize] = useState("");
 
   const handleMoveToCart = (item) => {
-    if (item.sizes && item.sizes.length > 0 && !selectedSize && selectedItem?._id === item._id) {
+    if (item.sizes?.length > 0 && !selectedSize) {
       toast.error("Please select a size first!");
       return;
     }
 
     const productToAdd =
-      item.sizes && item.sizes.length > 0
+      item.sizes?.length > 0
         ? { ...item, selectedSize }
         : item;
 
@@ -34,9 +34,9 @@ export default function Wishlist() {
 
   return (
     <div className="container my-4">
-      <h1>Your Wishlist</h1>
+      <h1 className="mb-4">Your Wishlist</h1>
       {wishlist.map((item) => (
-        <div className="card mb-3" key={item._id}>
+        <div className="card mb-3 shadow-sm" key={item._id}>
           <div className="row g-0 align-items-center">
             
             
@@ -53,16 +53,14 @@ export default function Wishlist() {
             <div className="col-md-8">
               <div className="card-body">
                 <h5 className="card-title">{item.name}</h5>
-                <p className="card-text">
+                <p className="card-text fw-bold">
                   <strong>${item.price}</strong>
                 </p>
 
                 
-                {selectedItem?._id === item._id &&
-                  item.sizes &&
-                  item.sizes.length > 0 && (
+                {selectedItem === item._id && item.sizes?.length > 0 && (
                     <select
-                      className="form-select mb-2"
+                      className="form-select mb-3"
                       value={selectedSize}
                       onChange={(e) => setSelectedSize(e.target.value)}
                     >
@@ -79,8 +77,8 @@ export default function Wishlist() {
                 <button
                   className="btn btn-primary me-2"
                   onClick={() => {
-                    if (item.sizes && item.sizes.length > 0) {
-                      if (selectedItem?._id === item._id) {
+                    if (item.sizes?.length > 0) {
+                      if (selectedItem === item._id) {
                         handleMoveToCart(item);
                       } else {
                         setSelectedItem(item);
@@ -91,7 +89,7 @@ export default function Wishlist() {
                     }
                   }}
                 >
-                  {selectedItem?._id === item._id
+                  {selectedItem === item._id
                     ? "Confirm Move"
                     : "Move to Cart"}
                 </button>

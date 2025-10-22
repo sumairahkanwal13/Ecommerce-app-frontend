@@ -17,9 +17,16 @@ export default function Nav() {
     e.preventDefault();
     if (searchTerm.trim()) {
       navigate(`/products?search=${encodeURIComponent(searchTerm)}`);
-      setSearchTerm("");
+
+    }else {
+      navigate("/products")
     }
   };
+
+  const handleClearSearch = () => {
+    setSearchTerm("");
+    navigate("/products")
+  }
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom shadow-sm">
@@ -60,6 +67,15 @@ export default function Nav() {
             <button className="btn btn-outline-success" type="submit">
               Search
             </button>
+            { searchTerm && (
+              <button
+              type="button"
+              className="btn btn-outline-danger"
+              onClick={handleClearSearch}
+              >
+                Clear
+                </button>
+            ) }
           </form>
 
           

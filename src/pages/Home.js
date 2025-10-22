@@ -4,8 +4,8 @@ import useFetch from "../useFetch";
 
 export default function Home(){
     const { data:categories, loading, error } = useFetch("https://project-1-five-psi.vercel.app/api/categories")
-    if(loading) return <p>Loading...</p>
-    if(error) return <p>Error occurred while fetching the data.</p>
+    if(loading) return <p className="text-center mt-5 mb-5">Loading...</p>
+    if(error) return <p className="text-center mt-5 mb-5">Error occurred while fetching the data.</p>
     
     return(
         <div className="container my-5">

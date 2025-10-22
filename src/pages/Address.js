@@ -13,6 +13,7 @@ export default function Address(){
         <h1 className="container my-4">Address Info</h1>
         <button
           className="btn btn-primary"
+          style={{width:  "100px"}}
           onClick={() => navigate("/addressForm")}
         >
           Add New Address

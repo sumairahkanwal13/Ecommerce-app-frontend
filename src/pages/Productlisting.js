@@ -78,8 +78,8 @@ export default function ProductListing() {
     setSortOrder("");
   };
 
-  if (loading) return <p className="text-center mt-4">Loading...</p>;
-  if (error) return <p className="text-center mt-4" >Error occurred while fetching data.</p>;
+  if (loading) return <p className="text-center mt-5 mb-5">Loading...</p>;
+  if (error) return <p className="text-center mt-5 mb-5" >Error occurred while fetching data.</p>;
 
   return (
     <div className="container my-5">

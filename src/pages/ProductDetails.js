@@ -15,9 +15,9 @@ export default function ProductDetails(){
     const [ selectedSize, setSelectedSize ] = useState("");
     const [ message, setMessage ] = useState("");
 
-    if(loading) return <p className="text-center mt-4">Loading....</p>
-    if(error) return <p className="text-center mt-4" >Error occurred while fetching data.</p>
-    if(!product) return <p className="text-center mt-4" >No product found.</p>
+    if(loading) return <p className="text-center mt-5 mb-5">Loading....</p>
+    if(error) return <p className="text-center mt-5 mb-5" >Error occurred while fetching data.</p>
+    if(!product) return <p className="text-center mt-5 mb-5" >No product found.</p>
 
     const handleAddToCart = () => {
         if(!selectedSize){

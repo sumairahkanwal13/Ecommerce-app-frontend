@@ -52,16 +52,16 @@ export default function Cart(){
                     <div className="d-flex align-items-center mb-2">
                       <button
                         className="btn btn-outline-primary btn-sm me-2"
-                        onClick={() => updateQuantity(item._id, item.quantity + 1)}
+                        onClick={() => updateQuantity(item._id, item.quantity - 1)}
                       >
-                        +
+                        -
                       </button>
                       <span>{item.quantity}</span>
                       <button
                         className="btn btn-outline-secondary btn-sm ms-2"
-                        onClick={() => updateQuantity(item._id, item.quantity - 1)}
+                        onClick={() => updateQuantity(item._id, item.quantity + 1)}
                       >
-                        -
+                        +
                       </button>
                     </div>
 

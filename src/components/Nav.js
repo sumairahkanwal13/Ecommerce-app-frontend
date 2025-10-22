@@ -70,7 +70,7 @@ export default function Nav() {
             { searchTerm && (
               <button
               type="button"
-              className="btn btn-outline-danger"
+              className="btn btn-outline-danger ms-2"
               onClick={handleClearSearch}
               >
                 Clear

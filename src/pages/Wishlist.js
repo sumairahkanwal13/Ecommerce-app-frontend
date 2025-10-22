@@ -7,7 +7,7 @@ export default function Wishlist() {
   const { wishlist, removeFromWishlist } = useWishlist();
   const { addToCart } = useCart();
 
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItemId, setSelectedItemId] = useState(null);
   const [selectedSize, setSelectedSize] = useState("");
 
   const handleMoveToCart = (item) => {
@@ -16,15 +16,16 @@ export default function Wishlist() {
       return;
     }
 
-    const productToAdd =
-      item.sizes?.length > 0
-        ? { ...item, selectedSize }
-        : item;
+    const productToAdd = item.sizes?.length > 0
+      ? { ...item, selectedSize }
+      : item;
 
     addToCart(productToAdd);
     removeFromWishlist(item._id);
     toast.success("Moved to cart!");
-    setSelectedItem(null);
+
+    
+    setSelectedItemId(null);
     setSelectedSize("");
   };
 
@@ -39,7 +40,6 @@ export default function Wishlist() {
         <div className="card mb-3 shadow-sm" key={item._id}>
           <div className="row g-0 align-items-center">
             
-            
             <div className="col-md-4 text-center">
               <img
                 src={item.image}
@@ -49,7 +49,6 @@ export default function Wishlist() {
               />
             </div>
 
-           
             <div className="col-md-8">
               <div className="card-body">
                 <h5 className="card-title">{item.name}</h5>
@@ -58,40 +57,37 @@ export default function Wishlist() {
                 </p>
 
                 
-                {selectedItem === item._id && item.sizes?.length > 0 && (
-                    <select
-                      className="form-select mb-3"
-                      value={selectedSize}
-                      onChange={(e) => setSelectedSize(e.target.value)}
-                    >
-                      <option value="">Select Size...</option>
-                      {item.sizes.map((size) => (
-                        <option key={size} value={size}>
-                          {size}
-                        </option>
-                      ))}
-                    </select>
-                  )}
+                {selectedItemId === item._id && item.sizes?.length > 0 && (
+                  <select
+                    className="form-select mb-3"
+                    value={selectedSize}
+                    onChange={(e) => setSelectedSize(e.target.value)}
+                  >
+                    <option value="">Select Size...</option>
+                    {item.sizes.map((size) => (
+                      <option key={size} value={size}>
+                        {size}
+                      </option>
+                    ))}
+                  </select>
+                )}
 
-                
                 <button
                   className="btn btn-primary me-2"
                   onClick={() => {
                     if (item.sizes?.length > 0) {
-                      if (selectedItem === item._id) {
+                      if (selectedItemId === item._id) {
                         handleMoveToCart(item);
                       } else {
-                        setSelectedItem(item);
-                        setSelectedSize(""); 
+                        setSelectedItemId(item._id);
+                        setSelectedSize("");
                       }
                     } else {
                       handleMoveToCart(item);
                     }
                   }}
                 >
-                  {selectedItem === item._id
-                    ? "Confirm Move"
-                    : "Move to Cart"}
+                  {selectedItemId === item._id ? "Confirm Move" : "Move to Cart"}
                 </button>
 
                 <button

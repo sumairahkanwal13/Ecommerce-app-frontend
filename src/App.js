@@ -19,6 +19,7 @@ import Checkout from "./pages/Checkout";
 import OrderSuccess from "./pages/OrderSuccess";
 import UserProfile from "./pages/UserProfile";
 import OrderHistory from "./pages/OrderHistory";
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -37,11 +38,13 @@ function App() {
         <Route path="/wishlist" element={<Wishlist/>}/>
         <Route path="/address" element={<Address/>}/>
         <Route path="/addressForm" element={<AddressForm/>}/>
+        <Route path="/addressForm/:id" element={<AddressForm/>}/>
         <Route path="/checkout" element={< Checkout/>}/>
         <Route path="/orderSuccess" element={< OrderSuccess/>}/>
         <Route path="/profile" element={<UserProfile/>}/>
         <Route path="/orderHistory" element={<OrderHistory/>}/>
       </Routes>
+      <Footer/>
     </Router>
     <ToastContainer position="top-right" 
         autoClose={2000}

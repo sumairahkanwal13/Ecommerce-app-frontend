@@ -1,70 +1,115 @@
-# Getting Started with Create React App
+# Fashion 21
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack online fashion store where users can explore trendy outfits, details of the product and can add their favourite items to the cart or to the wishlist. Users can manage their address easily. .
+Built with React, Node.js/Express, MongoDB .
 
-## Available Scripts
+---
+## Demo Link
 
-In the project directory, you can run:
+[Live Demo] (https://ecommerce-app-frontend-liard.vercel.app/)
 
-### `npm start`
+---
+## Quick Start
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+git clone https://github.com/sumairahkanwal13/Ecommerce-app-frontend.git
+cd Project1-Frontend
+npm install
+npm start
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## Technologies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- React JS
+- React Router
+- Node.js
+- Express
+- MongoDB
+- Bootstrap
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Demo Video
+Watch a walkthrought (9:34 minutes) of all the major features of this app:
+[Video Link] (https://drive.google.com/file/d/13n4B_KmhgFVI2FcFex9Ooce42nxueST6/view?usp=sharing)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Features
+**Home**
 
-### `npm run eject`
+- Displays all categories
+- Search products by title in real time
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Product List**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Display list of all products fetched from backend API.
+- Show different filter so user can narrow results
+- Edit button for editing the existing lead if needed
+- View Details and Add to Wishlist links are also available
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+**Product View Details**
 
-## Learn More
+- Display details of the product
+- Show product's detailed description with size selector
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+---
+## Api Reference
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### **Get/api/products/**<br>
+Fetch all products<br>
+Sample response<br>
+```
+[
+  {
+    "_id": "...",
+    "title": "Product Name",
+    "price": 199,
+    "category": { "_id": "...", "name": "Electronics" }
+  }
+]
 
-### Analyzing the Bundle Size
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### **POST /api/products/**<br>
+Create a product<br>
+Sample response<br>
+```
+{
+  "title": "Flooral Maxi Dress",
+  "description": "Details",
+  "price": 100,
+  "category": "women"
+}
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```
 
-### Advanced Configuration
+### **Get /api/categories/**<br>
+Fetch all categories<br>
+Sample response<br>
+```
+[
+  { "_id": "...", "name": "Men's Denim Jacket" }
+]
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```
 
-### Deployment
+### **POST /api/categories/**<br>
+Create a category<br>
+Sample response<br>
+```
+{
+  "message": "Category added successfully.",
+  "data": { "_id": "...", "name": "Electronics" }
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+## Contact
+For bugs or features request, please reach out to sumairahkanwal33@gmail.com 
